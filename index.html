@@ -1045,6 +1045,71 @@ input,select,textarea{
   }
 }
 
+
+/* separação clara das categorias no formulário */
+.group-help{
+  display:block;
+  margin-top:4px;
+  margin-bottom:10px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:400;
+}
+
+.subgroup-title{
+  margin-top:18px;
+  margin-bottom:10px;
+  padding-top:18px;
+  border-top:1px solid rgba(212,163,58,.18);
+}
+
+.subgroup-title span{
+  display:block;
+  font-size:16px;
+  font-weight:900;
+  color:var(--text);
+}
+
+.subgroup-title small{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+@media(max-width:700px){
+  .field{
+    padding-bottom:6px;
+  }
+
+  .group-help{
+    font-size:14px;
+    margin-bottom:12px;
+  }
+
+  .subgroup-title{
+    margin-top:22px;
+    margin-bottom:12px;
+    padding-top:22px;
+  }
+
+  .subgroup-title span{
+    font-size:21px;
+  }
+
+  .subgroup-title small{
+    font-size:14px;
+  }
+
+  .place-grid{
+    margin-bottom:4px;
+  }
+
+  .urgency-grid{
+    margin-top:0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1212,6 +1277,7 @@ input,select,textarea{
 
 <div class="field">
   <span>Tipo de local</span>
+  <small class="group-help">Onde o serviço será feito?</small>
   <div class="place-grid">
     <button type="button" class="place-btn active" data-value="Residência">Residência</button>
     <button type="button" class="place-btn" data-value="Apartamento">Apartamento</button>
@@ -1224,6 +1290,7 @@ input,select,textarea{
 
           </div>
 
+          <div class="subgroup-title"><span>Urgência</span><small>Quando você precisa do serviço?</small></div>
           <div class="urgency-grid">
             <button type="button" class="urgency-btn active" data-value="Urgente hoje">Hoje</button>
             <button type="button" class="urgency-btn" data-value="Essa semana">Essa semana</button>
