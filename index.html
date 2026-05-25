@@ -857,6 +857,365 @@ input,select,textarea{
   }
 }
 
+
+/* integração mobile + acessibilidade */
+:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:4px;
+}
+
+button,
+a,
+input,
+select,
+textarea{
+  -webkit-tap-highlight-color:rgba(212,163,58,.22);
+}
+
+input,
+select,
+textarea{
+  font-size:16px;
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto!important;
+    transition:none!important;
+    animation:none!important;
+  }
+}
+
+/* tablet */
+@media(max-width:900px){
+  .container{
+    width:min(100% - 28px,1120px);
+  }
+
+  .header{
+    position:sticky;
+  }
+
+  .header-inner{
+    min-height:70px;
+  }
+
+  .brand{
+    max-width:62%;
+  }
+
+  .brand span{
+    line-height:1.05;
+  }
+
+  .hero{
+    padding:42px 0 48px;
+  }
+
+  .hero-grid{
+    gap:28px;
+  }
+
+  .hero-photo{
+    border-radius:22px;
+  }
+
+  .section{
+    padding:56px 0;
+  }
+
+  .section-title,
+  .work-head{
+    margin-bottom:24px;
+  }
+
+  .quote-grid{
+    gap:24px;
+  }
+
+  .quote-copy h2{
+    max-width:none;
+  }
+}
+
+/* celular */
+@media(max-width:620px){
+  body{
+    padding-bottom:78px;
+    overflow-x:hidden;
+  }
+
+  .container{
+    width:min(100% - 24px,1120px);
+  }
+
+  .header-inner{
+    min-height:66px;
+  }
+
+  .brand{
+    gap:10px;
+    max-width:75%;
+  }
+
+  .brand img{
+    width:40px;
+    height:40px;
+    flex:0 0 auto;
+  }
+
+  .brand span{
+    font-size:13px;
+    letter-spacing:.03em;
+  }
+
+  .hero{
+    padding:34px 0 42px;
+  }
+
+  h1{
+    font-size:clamp(38px,12vw,46px);
+    letter-spacing:-.055em;
+  }
+
+  h2{
+    font-size:clamp(31px,10vw,40px);
+  }
+
+  .kicker{
+    font-size:11px;
+    letter-spacing:.13em;
+    margin-bottom:12px;
+  }
+
+  .lead,
+  .section-title p,
+  .quote-copy p,
+  .work-head p:not(.kicker){
+    font-size:16px;
+    line-height:1.55;
+  }
+
+  .actions{
+    gap:10px;
+    margin-top:24px;
+  }
+
+  .btn{
+    width:100%;
+    min-height:56px;
+    padding:0 18px;
+    font-size:15px;
+  }
+
+  .badges{
+    margin-top:18px;
+  }
+
+  .badges span{
+    width:100%;
+    font-size:13px;
+    padding:10px 12px;
+  }
+
+  .hero-photo{
+    border-radius:20px;
+  }
+
+  .hero-photo img{
+    height:330px;
+    object-position:center;
+  }
+
+  .photo-caption{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    padding:14px;
+    border-radius:16px;
+  }
+
+  .photo-caption strong{
+    font-size:20px;
+  }
+
+  .section{
+    padding:46px 0;
+  }
+
+  .services-grid{
+    gap:12px;
+  }
+
+  .service-card,
+  .choice-btn{
+    min-height:78px;
+    padding:14px;
+    border-radius:16px;
+  }
+
+  .service-card span{
+    margin-bottom:10px;
+  }
+
+  .service-card strong{
+    font-size:19px;
+  }
+
+  .service-card small{
+    font-size:13px;
+  }
+
+  .work-head{
+    gap:18px;
+  }
+
+  .work-cta{
+    width:100%;
+  }
+
+  .work-showcase{
+    gap:14px;
+  }
+
+  .work-card.premium,
+  .work-card.premium.featured,
+  .work-card.premium img,
+  .work-card.premium.featured img{
+    min-height:360px;
+  }
+
+  .work-overlay{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    padding:14px;
+    border-radius:16px;
+  }
+
+  .work-badge{
+    font-size:11px;
+    padding:6px 9px;
+  }
+
+  .work-overlay strong{
+    font-size:21px;
+  }
+
+  .work-overlay p{
+    font-size:14px;
+  }
+
+  .work-proof{
+    gap:10px;
+  }
+
+  .work-proof div{
+    padding:14px;
+    border-radius:15px;
+  }
+
+  .steps-grid{
+    gap:12px;
+  }
+
+  .step{
+    padding:18px;
+  }
+
+  .step strong{
+    font-size:20px;
+  }
+
+  .quote-form{
+    padding:16px;
+    gap:18px;
+    border-radius:20px;
+  }
+
+  .quote-card-title{
+    align-items:flex-start;
+    flex-direction:column;
+    margin-bottom:4px;
+  }
+
+  .choice-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .choice-btn{
+    align-items:center;
+  }
+
+  .choice-btn span{
+    width:36px;
+    height:36px;
+    flex:0 0 auto;
+  }
+
+  .input-row{
+    grid-template-columns:1fr!important;
+    gap:14px;
+  }
+
+  .place-grid,
+  .urgency-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .place-btn,
+  .urgency-btn{
+    min-height:54px;
+  }
+
+  textarea{
+    min-height:130px;
+  }
+
+  .order-summary{
+    padding:14px;
+  }
+
+  .footer{
+    padding-bottom:96px;
+  }
+
+  .mobile-bar{
+    min-height:66px;
+  }
+
+  .mobile-bar a{
+    min-height:66px;
+    font-size:13px;
+  }
+}
+
+/* telas muito pequenas */
+@media(max-width:380px){
+  .brand span{
+    font-size:12px;
+  }
+
+  h1{
+    font-size:36px;
+  }
+
+  .hero-photo img{
+    height:300px;
+  }
+
+  .work-card.premium,
+  .work-card.premium.featured,
+  .work-card.premium img,
+  .work-card.premium.featured img{
+    min-height:330px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1009,27 +1368,27 @@ input,select,textarea{
         <div class="form-group">
           <strong>1. Escolha o serviço</strong>
           <div class="choice-grid">
-            <button type="button" class="choice-btn form-service" data-value="Elétrica">
+            <button type="button" class="choice-btn form-service" aria-pressed="false" data-value="Elétrica">
               <span>⚡</span>
               <div><b>Elétrica</b><small>Tomadas e interruptores</small></div>
             </button>
-            <button type="button" class="choice-btn form-service" data-value="Suporte de TV">
+            <button type="button" class="choice-btn form-service" aria-pressed="false" data-value="Suporte de TV">
               <span>📺</span>
               <div><b>Suporte TV</b><small>Fixo ou articulado</small></div>
             </button>
-            <button type="button" class="choice-btn form-service" data-value="Painel LED / Iluminação">
+            <button type="button" class="choice-btn form-service" aria-pressed="false" data-value="Painel LED / Iluminação">
               <span>💡</span>
               <div><b>Painel LED</b><small>LED neon e luzes</small></div>
             </button>
-            <button type="button" class="choice-btn form-service" data-value="Hidráulica">
+            <button type="button" class="choice-btn form-service" aria-pressed="false" data-value="Hidráulica">
               <span>🚰</span>
               <div><b>Hidráulica</b><small>Torneiras e vazamentos</small></div>
             </button>
-            <button type="button" class="choice-btn form-service" data-value="Espelhos e quadros">
+            <button type="button" class="choice-btn form-service" aria-pressed="false" data-value="Espelhos e quadros">
               <span>🪞</span>
               <div><b>Espelhos</b><small>Fixação e suportes</small></div>
             </button>
-            <button type="button" class="choice-btn form-service" data-value="Outros reparos">
+            <button type="button" class="choice-btn form-service" aria-pressed="false" data-value="Outros reparos">
               <span>🔧</span>
               <div><b>Outros</b><small>Pequenos reparos</small></div>
             </button>
@@ -1059,10 +1418,10 @@ input,select,textarea{
 <div class="field">
   <span>Tipo de local</span>
   <div class="place-grid">
-    <button type="button" class="place-btn active" data-value="Residência">Residência</button>
-    <button type="button" class="place-btn" data-value="Apartamento">Apartamento</button>
-    <button type="button" class="place-btn" data-value="Comércio">Comércio</button>
-    <button type="button" class="place-btn" data-value="Condomínio">Condomínio</button>
+    <button type="button" class="place-btn active" aria-pressed="true" data-value="Residência">Residência</button>
+    <button type="button" class="place-btn" aria-pressed="false" data-value="Apartamento">Apartamento</button>
+    <button type="button" class="place-btn" aria-pressed="false" data-value="Comércio">Comércio</button>
+    <button type="button" class="place-btn" aria-pressed="false" data-value="Condomínio">Condomínio</button>
   </div>
   <input type="hidden" id="placeType" value="Residência">
 </div>
@@ -1071,9 +1430,9 @@ input,select,textarea{
           </div>
 
           <div class="urgency-grid">
-            <button type="button" class="urgency-btn active" data-value="Urgente hoje">Hoje</button>
-            <button type="button" class="urgency-btn" data-value="Essa semana">Essa semana</button>
-            <button type="button" class="urgency-btn" data-value="Sem pressa">Sem pressa</button>
+            <button type="button" class="urgency-btn active" aria-pressed="true" data-value="Urgente hoje">Hoje</button>
+            <button type="button" class="urgency-btn" aria-pressed="false" data-value="Essa semana">Essa semana</button>
+            <button type="button" class="urgency-btn" aria-pressed="false" data-value="Sem pressa">Sem pressa</button>
           </div>
 
           <select id="urgency" class="hidden-select" required>
@@ -1108,7 +1467,7 @@ input,select,textarea{
   </div>
 </footer>
 
-<div class="mobile-bar">
+<div class="mobile-bar" aria-label="Ações rápidas no celular">
   <a href="tel:+5548996689199">Ligar</a>
   <a href="#orcamento">Orçamento</a>
   <a href="https://wa.me/5548996689199" target="_blank" rel="noopener">WhatsApp</a>
@@ -1140,11 +1499,15 @@ function setService(value) {
   serviceSelect.value = value;
 
   formServiceButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.value === value);
+    const active = btn.dataset.value === value;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
   });
 
   serviceButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.getAttribute("data-service") === value);
+    const active = btn.getAttribute("data-service") === value;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
   });
 
   updateSummary();
@@ -1168,8 +1531,9 @@ formServiceButtons.forEach((button) => {
 
 urgencyButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    urgencyButtons.forEach((btn) => btn.classList.remove("active"));
+    urgencyButtons.forEach((btn) => { btn.classList.remove("active"); btn.setAttribute("aria-pressed", "false"); });
     button.classList.add("active");
+    button.setAttribute("aria-pressed", "true");
     urgencySelect.value = button.dataset.value;
     updateSummary();
   });
@@ -1177,8 +1541,9 @@ urgencyButtons.forEach((button) => {
 
 placeButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    placeButtons.forEach((btn) => btn.classList.remove("active"));
+    placeButtons.forEach((btn) => { btn.classList.remove("active"); btn.setAttribute("aria-pressed", "false"); });
     button.classList.add("active");
+    button.setAttribute("aria-pressed", "true");
     placeType.value = button.dataset.value;
     updateSummary();
   });
