@@ -540,6 +540,81 @@ input,select,textarea{
   padding:14px;
 }
 
+
+/* custom dropdown real */
+.custom-select{
+  position:relative;
+}
+
+.custom-select-trigger{
+  width:100%;
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid rgba(212,163,58,.26);
+  background:linear-gradient(180deg,#111,#080808);
+  color:var(--text);
+  cursor:pointer;
+  font-weight:800;
+}
+
+.custom-select-trigger:hover{
+  border-color:var(--gold);
+  background:#15110a;
+}
+
+.custom-select-trigger b{
+  color:var(--gold);
+  font-size:18px;
+}
+
+.custom-options{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  right:0;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  border-radius:16px;
+  border:1px solid rgba(212,163,58,.28);
+  background:#0b0b0b;
+  z-index:40;
+  box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+
+.custom-options.open{
+  display:flex;
+}
+
+.custom-option{
+  min-height:54px;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  background:#0b0b0b;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  color:var(--text);
+  font-weight:700;
+  text-align:left;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.custom-option:last-child{
+  border-bottom:0;
+}
+
+.custom-option:hover,
+.custom-option.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#050505;
+}
+
 </style>
 </head>
 <body>
@@ -703,15 +778,27 @@ input,select,textarea{
               <input id="district" type="text" placeholder="Ex: Centro, Campeche, Ingleses" required>
             </label>
 
-            <label class="field select-field">
-              <span>Tipo de local</span>
-              <select id="placeType">
-                <option>Residência</option>
-                <option>Apartamento</option>
-                <option>Comércio</option>
-                <option>Condomínio</option>
-              </select>
-            </label>
+            
+<label class="field">
+  <span>Tipo de local</span>
+
+  <div class="custom-select" id="placeSelect">
+    <button type="button" class="custom-select-trigger" id="placeTrigger">
+      <span id="placeValue">Residência</span>
+      <b>⌄</b>
+    </button>
+
+    <div class="custom-options" id="placeOptions">
+      <button type="button" class="custom-option active" data-value="Residência">Residência</button>
+      <button type="button" class="custom-option" data-value="Apartamento">Apartamento</button>
+      <button type="button" class="custom-option" data-value="Comércio">Comércio</button>
+      <button type="button" class="custom-option" data-value="Condomínio">Condomínio</button>
+    </div>
+  </div>
+
+  <input type="hidden" id="placeType" value="Residência">
+</label>
+
           </div>
 
           <div class="urgency-grid">
@@ -845,6 +932,39 @@ Vou enviar as fotos do serviço na conversa.`;
 });
 
 updateSummary();
+
+const placeTrigger=document.querySelector("#placeTrigger");
+const placeOptions=document.querySelector("#placeOptions");
+const placeValue=document.querySelector("#placeValue");
+const placeType=document.querySelector("#placeType");
+const customOptions=document.querySelectorAll(".custom-option");
+
+placeTrigger.addEventListener("click",()=>{
+  placeOptions.classList.toggle("open");
+});
+
+customOptions.forEach((option)=>{
+  option.addEventListener("click",()=>{
+    customOptions.forEach((item)=>item.classList.remove("active"));
+    option.classList.add("active");
+
+    const value=option.dataset.value;
+
+    placeValue.textContent=value;
+    placeType.value=value;
+
+    placeOptions.classList.remove("open");
+
+    updateSummary();
+  });
+});
+
+document.addEventListener("click",(event)=>{
+  if(!document.querySelector("#placeSelect").contains(event.target)){
+    placeOptions.classList.remove("open");
+  }
+});
+
 </script>
 </body>
 </html>
