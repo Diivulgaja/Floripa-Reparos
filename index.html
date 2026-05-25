@@ -615,6 +615,50 @@ input,select,textarea{
   color:#050505;
 }
 
+
+/* tipo de local corrigido: botões no estilo do site */
+.place-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.place-btn{
+  min-height:54px;
+  border-radius:14px;
+  border:1px solid rgba(212,163,58,.24);
+  background:#080808;
+  color:var(--text);
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.place-btn:hover,
+.place-btn.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#050505;
+  border-color:transparent;
+  transform:translateY(-1px);
+}
+
+.input-row{
+  grid-template-columns:1fr;
+}
+
+@media(min-width:760px){
+  .input-row{
+    grid-template-columns:1fr 1fr;
+    align-items:start;
+  }
+}
+
+@media(max-width:620px){
+  .place-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -779,25 +823,18 @@ input,select,textarea{
             </label>
 
             
-<label class="field">
+
+<div class="field">
   <span>Tipo de local</span>
-
-  <div class="custom-select" id="placeSelect">
-    <button type="button" class="custom-select-trigger" id="placeTrigger">
-      <span id="placeValue">Residência</span>
-      <b>⌄</b>
-    </button>
-
-    <div class="custom-options" id="placeOptions">
-      <button type="button" class="custom-option active" data-value="Residência">Residência</button>
-      <button type="button" class="custom-option" data-value="Apartamento">Apartamento</button>
-      <button type="button" class="custom-option" data-value="Comércio">Comércio</button>
-      <button type="button" class="custom-option" data-value="Condomínio">Condomínio</button>
-    </div>
+  <div class="place-grid">
+    <button type="button" class="place-btn active" data-value="Residência">Residência</button>
+    <button type="button" class="place-btn" data-value="Apartamento">Apartamento</button>
+    <button type="button" class="place-btn" data-value="Comércio">Comércio</button>
+    <button type="button" class="place-btn" data-value="Condomínio">Condomínio</button>
   </div>
-
   <input type="hidden" id="placeType" value="Residência">
-</label>
+</div>
+
 
           </div>
 
@@ -845,6 +882,7 @@ input,select,textarea{
   <a href="https://wa.me/5548996689199" target="_blank" rel="noopener">WhatsApp</a>
 </div>
 
+
 <script>
 const serviceButtons = document.querySelectorAll(".service-card");
 const serviceSelect = document.querySelector("#service");
@@ -852,8 +890,9 @@ const quoteForm = document.querySelector("#quoteForm");
 const formServiceButtons = document.querySelectorAll(".form-service");
 const urgencyButtons = document.querySelectorAll(".urgency-btn");
 const urgencySelect = document.querySelector("#urgency");
-const districtInput = document.querySelector("#district");
+const placeButtons = document.querySelectorAll(".place-btn");
 const placeType = document.querySelector("#placeType");
+const districtInput = document.querySelector("#district");
 const detailsInput = document.querySelector("#details");
 const summaryText = document.querySelector("#summaryText");
 
@@ -867,12 +906,15 @@ function updateSummary() {
 
 function setService(value) {
   serviceSelect.value = value;
+
   formServiceButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.value === value);
   });
+
   serviceButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.getAttribute("data-service") === value);
   });
+
   updateSummary();
 }
 
@@ -887,7 +929,9 @@ serviceButtons.forEach((button) => {
 });
 
 formServiceButtons.forEach((button) => {
-  button.addEventListener("click", () => setService(button.dataset.value));
+  button.addEventListener("click", () => {
+    setService(button.dataset.value);
+  });
 });
 
 urgencyButtons.forEach((button) => {
@@ -899,11 +943,17 @@ urgencyButtons.forEach((button) => {
   });
 });
 
-[districtInput, placeType, detailsInput].forEach((item) => {
-  item.addEventListener("input", updateSummary);
-  item.addEventListener("change", updateSummary);
+placeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    placeButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
+    placeType.value = button.dataset.value;
+    updateSummary();
+  });
 });
 
+districtInput.addEventListener("input", updateSummary);
+detailsInput.addEventListener("input", updateSummary);
 
 quoteForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -918,6 +968,7 @@ quoteForm.addEventListener("submit", (event) => {
   const urgency = urgencySelect.value;
   const place = placeType.value;
   const details = detailsInput.value.trim();
+
   const message = `Olá! Gostaria de solicitar um orçamento com a Floripa Reparos.
 
 Serviço: ${service}
@@ -932,39 +983,7 @@ Vou enviar as fotos do serviço na conversa.`;
 });
 
 updateSummary();
-
-const placeTrigger=document.querySelector("#placeTrigger");
-const placeOptions=document.querySelector("#placeOptions");
-const placeValue=document.querySelector("#placeValue");
-const placeType=document.querySelector("#placeType");
-const customOptions=document.querySelectorAll(".custom-option");
-
-placeTrigger.addEventListener("click",()=>{
-  placeOptions.classList.toggle("open");
-});
-
-customOptions.forEach((option)=>{
-  option.addEventListener("click",()=>{
-    customOptions.forEach((item)=>item.classList.remove("active"));
-    option.classList.add("active");
-
-    const value=option.dataset.value;
-
-    placeValue.textContent=value;
-    placeType.value=value;
-
-    placeOptions.classList.remove("open");
-
-    updateSummary();
-  });
-});
-
-document.addEventListener("click",(event)=>{
-  if(!document.querySelector("#placeSelect").contains(event.target)){
-    placeOptions.classList.remove("open");
-  }
-});
-
 </script>
+
 </body>
 </html>
