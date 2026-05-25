@@ -494,6 +494,52 @@ input,select,textarea{
   }
 }
 
+
+/* custom select visual */
+.field.select-field{
+  position:relative;
+}
+
+.field.select-field::after{
+  content:"⌄";
+  position:absolute;
+  right:18px;
+  top:46px;
+  color:var(--gold);
+  font-size:18px;
+  pointer-events:none;
+  font-weight:900;
+}
+
+.field select{
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  cursor:pointer;
+  background:
+    linear-gradient(180deg,#111,#080808);
+  border:1px solid rgba(212,163,58,.28);
+  color:var(--text);
+  font-weight:700;
+  transition:.2s ease;
+}
+
+.field select:hover{
+  border-color:var(--gold);
+  background:#15110a;
+}
+
+.field select:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(212,163,58,.12);
+}
+
+.field option{
+  background:#0b0b0b;
+  color:#f5f3ec;
+  padding:14px;
+}
+
 </style>
 </head>
 <body>
@@ -657,7 +703,7 @@ input,select,textarea{
               <input id="district" type="text" placeholder="Ex: Centro, Campeche, Ingleses" required>
             </label>
 
-            <label class="field">
+            <label class="field select-field">
               <span>Tipo de local</span>
               <select id="placeType">
                 <option>Residência</option>
