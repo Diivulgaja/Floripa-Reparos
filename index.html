@@ -686,21 +686,14 @@ input,select,textarea{
           <textarea id="details" rows="4" placeholder="Ex: instalar suporte articulado na sala, parede de concreto..." required></textarea>
         </label>
 
-        <div class="file-box">
-          <label class="file-label" for="photos">
-            <b>Adicionar fotos do serviço</b>
-            <span id="fileName">Nenhuma foto selecionada</span>
-          </label>
-          <input id="photos" type="file" accept="image/*" multiple>
-          <p class="file-help">As fotos não são enviadas pelo site. Depois que o WhatsApp abrir, anexe as imagens na conversa.</p>
-        </div>
+        
+<div class="order-summary">
 
-        <div class="order-summary">
           <strong>Resumo</strong>
           <p id="summaryText">Escolha um serviço para começar o pedido.</p>
         </div>
 
-        <button class="btn btn-form" type="submit">Enviar pedido pelo WhatsApp</button>
+        <button class="btn btn-form" type="submit">Abrir WhatsApp</button>
       </form>
     </div>
   </section>
@@ -729,8 +722,6 @@ const urgencySelect = document.querySelector("#urgency");
 const districtInput = document.querySelector("#district");
 const placeType = document.querySelector("#placeType");
 const detailsInput = document.querySelector("#details");
-const photosInput = document.querySelector("#photos");
-const fileName = document.querySelector("#fileName");
 const summaryText = document.querySelector("#summaryText");
 
 function updateSummary() {
@@ -780,10 +771,6 @@ urgencyButtons.forEach((button) => {
   item.addEventListener("change", updateSummary);
 });
 
-photosInput.addEventListener("change", () => {
-  const count = photosInput.files.length;
-  fileName.textContent = count === 0 ? "Nenhuma foto selecionada" : `${count} foto(s) selecionada(s)`;
-});
 
 quoteForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -798,8 +785,6 @@ quoteForm.addEventListener("submit", (event) => {
   const urgency = urgencySelect.value;
   const place = placeType.value;
   const details = detailsInput.value.trim();
-  const photos = photosInput.files.length;
-
   const message = `Olá! Gostaria de solicitar um orçamento com a Floripa Reparos.
 
 Serviço: ${service}
@@ -807,7 +792,8 @@ Local: ${place}
 Bairro: ${district}
 Urgência: ${urgency}
 Descrição: ${details}
-Fotos: ${photos > 0 ? "Tenho fotos para enviar na conversa." : "Ainda não anexei fotos."}`;
+
+Vou enviar as fotos do serviço na conversa.`;
 
   window.open(`https://wa.me/5548996689199?text=${encodeURIComponent(message)}`, "_blank");
 });
