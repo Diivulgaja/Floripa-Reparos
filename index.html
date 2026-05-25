@@ -286,6 +286,214 @@ label small{display:block;margin-top:8px;color:var(--muted);font-weight:400;line
     color:#050505;
   }
 }
+
+/* orçamento premium */
+.quote-grid{
+  grid-template-columns:.82fr 1.18fr;
+  align-items:start;
+}
+.quote-copy{
+  position:sticky;
+  top:110px;
+}
+.quote-copy h2{
+  max-width:470px;
+}
+.quote-card-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:20px;
+}
+.quote-card-title strong{
+  font-size:22px;
+}
+.quote-card-title span{
+  color:var(--gold);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.quote-form{
+  gap:22px;
+  padding:28px;
+  background:
+    radial-gradient(circle at top right,rgba(212,163,58,.10),transparent 220px),
+    #141414;
+}
+.form-group{
+  display:grid;
+  gap:12px;
+}
+.form-group > strong{
+  font-size:16px;
+}
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.choice-btn{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  border:1px solid rgba(212,163,58,.24);
+  border-radius:16px;
+  padding:14px;
+  background:#080808;
+  color:var(--text);
+  text-align:left;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.choice-btn span{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(212,163,58,.12);
+  font-size:20px;
+}
+.choice-btn b{
+  display:block;
+  font-size:15px;
+}
+.choice-btn small{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+.choice-btn:hover,
+.choice-btn.active{
+  border-color:var(--gold);
+  background:#1b1710;
+  transform:translateY(-2px);
+}
+.urgency-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.urgency-btn{
+  min-height:58px;
+  border-radius:14px;
+  border:1px solid rgba(212,163,58,.24);
+  background:#080808;
+  color:var(--text);
+  font-weight:900;
+  cursor:pointer;
+}
+.urgency-btn:hover,
+.urgency-btn.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#050505;
+  border-color:transparent;
+}
+.input-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.field{
+  display:grid;
+  gap:8px;
+}
+.field span{
+  font-weight:900;
+  font-size:15px;
+}
+input,select,textarea{
+  margin-top:0;
+}
+.hidden-select{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+  width:1px;
+  height:1px;
+}
+.file-box{
+  border:1px dashed rgba(212,163,58,.42);
+  border-radius:16px;
+  background:#080808;
+  padding:18px;
+}
+.file-box input{
+  display:none;
+}
+.file-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px;
+  border-radius:14px;
+  background:#111;
+  border:1px solid rgba(212,163,58,.18);
+  cursor:pointer;
+}
+.file-label b{
+  color:var(--gold);
+}
+.file-label span{
+  color:var(--muted);
+  font-size:14px;
+}
+.file-help{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4;
+}
+.order-summary{
+  display:grid;
+  gap:8px;
+  padding:16px;
+  border-radius:16px;
+  background:#090909;
+  border:1px solid rgba(212,163,58,.18);
+}
+.order-summary strong{
+  color:var(--gold);
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.order-summary p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+.btn-form{
+  min-height:62px;
+  font-size:16px;
+}
+@media(max-width:900px){
+  .quote-copy{
+    position:static;
+  }
+}
+@media(max-width:620px){
+  .choice-grid,
+  .urgency-grid,
+  .input-row{
+    grid-template-columns:1fr;
+  }
+  .quote-form{
+    padding:18px;
+  }
+  .file-label{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -391,12 +599,46 @@ label small{display:block;margin-top:8px;color:var(--muted);font-weight:400;line
     <div class="container quote-grid">
       <div class="quote-copy">
         <p class="kicker">Orçamento rápido</p>
-        <h2>Receba atendimento pelo WhatsApp.</h2>
-        <p>Preencha as informações principais. O WhatsApp abre com a mensagem pronta. Depois é só anexar as fotos na conversa.</p>
+        <h2>Monte seu pedido em poucos segundos.</h2>
+        <p>Escolha o serviço, informe o bairro, marque a urgência e envie tudo organizado pelo WhatsApp. Depois é só anexar as fotos na conversa.</p>
       </div>
+
       <form class="quote-form" id="quoteForm">
-        <label>Tipo de serviço
-          <select id="service" required>
+        <div class="quote-card-title">
+          <strong>Pedido de serviço</strong>
+          <span>WhatsApp</span>
+        </div>
+
+        <div class="form-group">
+          <strong>1. Escolha o serviço</strong>
+          <div class="choice-grid">
+            <button type="button" class="choice-btn form-service" data-value="Elétrica">
+              <span>⚡</span>
+              <div><b>Elétrica</b><small>Tomadas e interruptores</small></div>
+            </button>
+            <button type="button" class="choice-btn form-service" data-value="Suporte de TV">
+              <span>📺</span>
+              <div><b>Suporte TV</b><small>Fixo ou articulado</small></div>
+            </button>
+            <button type="button" class="choice-btn form-service" data-value="Painel LED / Iluminação">
+              <span>💡</span>
+              <div><b>Painel LED</b><small>LED neon e luzes</small></div>
+            </button>
+            <button type="button" class="choice-btn form-service" data-value="Hidráulica">
+              <span>🚰</span>
+              <div><b>Hidráulica</b><small>Torneiras e vazamentos</small></div>
+            </button>
+            <button type="button" class="choice-btn form-service" data-value="Espelhos e quadros">
+              <span>🪞</span>
+              <div><b>Espelhos</b><small>Fixação e suportes</small></div>
+            </button>
+            <button type="button" class="choice-btn form-service" data-value="Outros reparos">
+              <span>🔧</span>
+              <div><b>Outros</b><small>Pequenos reparos</small></div>
+            </button>
+          </div>
+
+          <select id="service" class="hidden-select" required>
             <option value="">Selecione um serviço</option>
             <option>Elétrica</option>
             <option>Suporte de TV</option>
@@ -405,25 +647,60 @@ label small{display:block;margin-top:8px;color:var(--muted);font-weight:400;line
             <option>Espelhos e quadros</option>
             <option>Outros reparos</option>
           </select>
-        </label>
-        <label>Bairro
-          <input id="district" type="text" placeholder="Ex: Centro, Campeche, Ingleses" required>
-        </label>
-        <label>Urgência
-          <select id="urgency" required>
+        </div>
+
+        <div class="form-group">
+          <strong>2. Local e urgência</strong>
+          <div class="input-row">
+            <label class="field">
+              <span>Bairro</span>
+              <input id="district" type="text" placeholder="Ex: Centro, Campeche, Ingleses" required>
+            </label>
+
+            <label class="field">
+              <span>Tipo de local</span>
+              <select id="placeType">
+                <option>Residência</option>
+                <option>Apartamento</option>
+                <option>Comércio</option>
+                <option>Condomínio</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="urgency-grid">
+            <button type="button" class="urgency-btn active" data-value="Urgente hoje">Hoje</button>
+            <button type="button" class="urgency-btn" data-value="Essa semana">Essa semana</button>
+            <button type="button" class="urgency-btn" data-value="Sem pressa">Sem pressa</button>
+          </div>
+
+          <select id="urgency" class="hidden-select" required>
             <option>Urgente hoje</option>
             <option>Essa semana</option>
             <option>Sem pressa</option>
           </select>
+        </div>
+
+        <label class="field">
+          <span>3. Descreva o serviço</span>
+          <textarea id="details" rows="4" placeholder="Ex: instalar suporte articulado na sala, parede de concreto..." required></textarea>
         </label>
-        <label>Descreva o serviço
-          <textarea id="details" rows="4" placeholder="Ex: instalar suporte articulado na sala..." required></textarea>
-        </label>
-        <label>Fotos do serviço
+
+        <div class="file-box">
+          <label class="file-label" for="photos">
+            <b>Adicionar fotos do serviço</b>
+            <span id="fileName">Nenhuma foto selecionada</span>
+          </label>
           <input id="photos" type="file" accept="image/*" multiple>
-          <small>As fotos não são enviadas pelo site. Depois de abrir o WhatsApp, anexe as imagens na conversa.</small>
-        </label>
-        <button class="btn btn-form" type="submit">Receber orçamento no WhatsApp</button>
+          <p class="file-help">As fotos não são enviadas pelo site. Depois que o WhatsApp abrir, anexe as imagens na conversa.</p>
+        </div>
+
+        <div class="order-summary">
+          <strong>Resumo</strong>
+          <p id="summaryText">Escolha um serviço para começar o pedido.</p>
+        </div>
+
+        <button class="btn btn-form" type="submit">Enviar pedido pelo WhatsApp</button>
       </form>
     </div>
   </section>
@@ -443,35 +720,99 @@ label small{display:block;margin-top:8px;color:var(--muted);font-weight:400;line
 </div>
 
 <script>
-const serviceButtons=document.querySelectorAll(".service-card");
-const serviceSelect=document.querySelector("#service");
-const quoteForm=document.querySelector("#quoteForm");
+const serviceButtons = document.querySelectorAll(".service-card");
+const serviceSelect = document.querySelector("#service");
+const quoteForm = document.querySelector("#quoteForm");
+const formServiceButtons = document.querySelectorAll(".form-service");
+const urgencyButtons = document.querySelectorAll(".urgency-btn");
+const urgencySelect = document.querySelector("#urgency");
+const districtInput = document.querySelector("#district");
+const placeType = document.querySelector("#placeType");
+const detailsInput = document.querySelector("#details");
+const photosInput = document.querySelector("#photos");
+const fileName = document.querySelector("#fileName");
+const summaryText = document.querySelector("#summaryText");
 
-serviceButtons.forEach((button)=>{
-  button.addEventListener("click",()=>{
-    serviceButtons.forEach((item)=>item.classList.remove("active"));
-    button.classList.add("active");
-    serviceSelect.value=button.getAttribute("data-service");
-    document.querySelector("#orcamento").scrollIntoView({behavior:"smooth",block:"start"});
+function updateSummary() {
+  const service = serviceSelect.value || "Serviço não escolhido";
+  const district = districtInput.value.trim() || "bairro não informado";
+  const urgency = urgencySelect.value;
+  const place = placeType.value;
+  summaryText.textContent = `${service} • ${place} • ${district} • ${urgency}`;
+}
+
+function setService(value) {
+  serviceSelect.value = value;
+  formServiceButtons.forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.value === value);
+  });
+  serviceButtons.forEach((btn) => {
+    btn.classList.toggle("active", btn.getAttribute("data-service") === value);
+  });
+  updateSummary();
+}
+
+serviceButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setService(button.getAttribute("data-service"));
+    document.querySelector("#orcamento").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   });
 });
 
-quoteForm.addEventListener("submit",(event)=>{
+formServiceButtons.forEach((button) => {
+  button.addEventListener("click", () => setService(button.dataset.value));
+});
+
+urgencyButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    urgencyButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
+    urgencySelect.value = button.dataset.value;
+    updateSummary();
+  });
+});
+
+[districtInput, placeType, detailsInput].forEach((item) => {
+  item.addEventListener("input", updateSummary);
+  item.addEventListener("change", updateSummary);
+});
+
+photosInput.addEventListener("change", () => {
+  const count = photosInput.files.length;
+  fileName.textContent = count === 0 ? "Nenhuma foto selecionada" : `${count} foto(s) selecionada(s)`;
+});
+
+quoteForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const service=document.querySelector("#service").value;
-  const district=document.querySelector("#district").value.trim();
-  const urgency=document.querySelector("#urgency").value;
-  const details=document.querySelector("#details").value.trim();
-  const photos=document.querySelector("#photos").files.length;
-  const message=`Olá! Gostaria de solicitar um orçamento com a Floripa Reparos.
+
+  if (!serviceSelect.value) {
+    alert("Escolha o tipo de serviço.");
+    return;
+  }
+
+  const service = serviceSelect.value;
+  const district = districtInput.value.trim();
+  const urgency = urgencySelect.value;
+  const place = placeType.value;
+  const details = detailsInput.value.trim();
+  const photos = photosInput.files.length;
+
+  const message = `Olá! Gostaria de solicitar um orçamento com a Floripa Reparos.
 
 Serviço: ${service}
+Local: ${place}
 Bairro: ${district}
 Urgência: ${urgency}
 Descrição: ${details}
-Fotos: ${photos>0?"Tenho fotos para enviar na conversa.":"Ainda não anexei fotos."}`;
-  window.open(`https://wa.me/5548996689199?text=${encodeURIComponent(message)}`,"_blank");
+Fotos: ${photos > 0 ? "Tenho fotos para enviar na conversa." : "Ainda não anexei fotos."}`;
+
+  window.open(`https://wa.me/5548996689199?text=${encodeURIComponent(message)}`, "_blank");
 });
+
+updateSummary();
 </script>
 </body>
 </html>
